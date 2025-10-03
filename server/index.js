@@ -2,56 +2,58 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import rsvpRoutes from "./routes/rsvp.routes.js";
 
-// Load environment variables
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
-  credentials: true,
-}));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
+// API Routes
 app.use("/api/rsvp", rsvpRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
-  res.status(200).json({
+  res.json({
     success: true,
     message: "Wedding RSVP API is running",
     timestamp: new Date().toISOString(),
   });
 });
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error("Error:", err);
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || "Internal server error",
-  });
-});
+// Serve static files from React build in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../dist")));
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: "Route not found",
+  // Handle React routing - return all requests to React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist", "index.html"));
   });
-});
+}
 
-// Start server
+// Development mode message
+if (process.env.NODE_ENV !== "production") {
+  console.log("🚀 Wedding RSVP Server running on port", PORT);
+  console.log("📧 Email notifications enabled");
+  console.log("🌐 Frontend URL:", process.env.FRONTEND_URL || "http://localhost:3000");
+}
+
 app.listen(PORT, () => {
-  console.log(`🚀 Wedding RSVP Server running on port ${PORT}`);
-  console.log(`📧 Email notifications enabled`);
-  console.log(`🌐 Frontend URL: ${process.env.FRONTEND_URL}`);
+  if (process.env.NODE_ENV === "production") {
+    console.log(`✅ Server running in production mode on port ${PORT}`);
+  } else {
+    console.log(`✅ Server running in development mode on port ${PORT}`);
+  }
 });
 
 export default app;

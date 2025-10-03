@@ -8,6 +8,7 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    emptyOutDir: true,
     sourcemap: false,
     rollupOptions: {
       output: {
@@ -24,7 +25,7 @@ export default defineConfig({
     open: true,
     proxy: {
       "/api": {
-        target: process.env.VITE_API_URL || "http://localhost:5000",
+        target: "http://localhost:5000",
         changeOrigin: true,
         secure: false,
       },
@@ -32,7 +33,7 @@ export default defineConfig({
   },
   define: {
     "import.meta.env.VITE_API_URL": JSON.stringify(
-      process.env.VITE_API_URL || "http://localhost:5000/api"
+      process.env.VITE_API_URL || "/api"
     ),
   },
 });
