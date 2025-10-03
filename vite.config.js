@@ -10,6 +10,7 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
     sourcemap: false,
+    minify: "esbuild",
     rollupOptions: {
       output: {
         manualChunks: {
@@ -19,13 +20,14 @@ export default defineConfig({
         },
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
   server: {
     port: 3000,
     open: true,
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: process.env.VITE_API_URL || "http://localhost:5000",
         changeOrigin: true,
         secure: false,
       },
@@ -35,5 +37,8 @@ export default defineConfig({
     "import.meta.env.VITE_API_URL": JSON.stringify(
       process.env.VITE_API_URL || "/api"
     ),
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "framer-motion", "lucide-react"],
   },
 });

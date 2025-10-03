@@ -1,0 +1,17 @@
+node_modules
+.git
+.env
+.env.local
+server/data/rsvp.json
+*.log
+.DS_Store
+.vscode
+.ideanode_modules
+.git
+.env
+.env.local
+server/data/rsvp.json
+*.log
+.DS_Store
+.vscode
+.idea

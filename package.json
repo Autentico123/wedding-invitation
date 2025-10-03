@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "nodemon server/index.js",
@@ -12,7 +16,8 @@
     "start:dev": "cross-env NODE_ENV=development node server/index.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "vercel-build": "vite build"
+    "vercel-build": "vite build",
+    "postinstall": "echo 'Dependencies installed successfully'"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
