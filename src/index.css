@@ -1,0 +1,302 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Google Fonts Import */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* Base Layer - Standardized maroon colors */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    @apply antialiased text-gray-900 bg-white leading-relaxed;
+  }
+
+  .font-serif {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+
+  *:focus {
+    @apply outline-none ring-2 ring-maroon-800 ring-opacity-50;
+  }
+}
+
+/* Components Layer - Updated maroon */
+@layer components {
+  /* Buttons with standardized maroon */
+  .btn-wedding {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           bg-maroon-800 hover:bg-maroon-700 active:bg-maroon-900
+           text-white font-medium rounded-lg
+           border border-maroon-800 hover:border-maroon-700
+           transition-all duration-200 ease-in-out
+           focus:ring-2 focus:ring-maroon-800 focus:ring-opacity-50
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-wedding-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-khaki-500 hover:bg-khaki-600 active:bg-khaki-700
+           text-maroon-800 font-medium rounded-lg
+           border border-khaki-500 hover:border-khaki-600
+           transition-all duration-200 ease-in-out
+           focus:ring-2 focus:ring-khaki-500 focus:ring-opacity-50
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Inputs with standardized maroon */
+  .input-wedding {
+    @apply w-full px-4 py-3 
+           bg-white/80 backdrop-blur-sm
+           border border-maroon-200 rounded-lg
+           focus:border-maroon-800 focus:ring-2 focus:ring-maroon-800 focus:ring-opacity-20
+           placeholder:text-gray-400
+           transition-all duration-200 ease-in-out;
+  }
+
+  .textarea-wedding {
+    @apply w-full px-4 py-3 
+           bg-white/80 backdrop-blur-sm
+           border border-maroon-200 rounded-lg
+           focus:border-maroon-800 focus:ring-2 focus:ring-maroon-800 focus:ring-opacity-20
+           placeholder:text-gray-400 resize-vertical
+           transition-all duration-200 ease-in-out;
+  }
+
+  .card-wedding {
+    @apply bg-white/90 backdrop-blur-sm 
+           shadow-xl border border-white/20 
+           rounded-2xl overflow-hidden;
+  }
+
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-md 
+           border border-white/20 
+           rounded-2xl overflow-hidden
+           shadow-lg;
+  }
+
+  .nav-link {
+    @apply relative text-white/90 hover:text-white 
+           transition-all duration-200 ease-in-out
+           after:content-[''] after:absolute after:bottom-0 after:left-0
+           after:w-0 after:h-0.5 after:bg-khaki-400
+           hover:after:w-full after:transition-all after:duration-300;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Flip card image optimization */
+  .flip-card-image {
+    @apply w-full h-full object-cover object-center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
+  }
+
+  .flip-card-image-contain {
+    @apply w-full h-full object-contain object-center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
+  }
+}
+
+/* Utilities Layer */
+@layer utilities {
+  /* 3D Transform utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .perspective-1500 {
+    perspective: 1500px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  /* Custom scrollbar - Updated maroon */
+  .scrollbar-wedding {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.maroon.800") theme("colors.maroon.100");
+  }
+
+  .scrollbar-wedding::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-wedding::-webkit-scrollbar-track {
+    @apply bg-maroon-100/50 rounded-full;
+  }
+
+  .scrollbar-wedding::-webkit-scrollbar-thumb {
+    @apply bg-maroon-800 rounded-full;
+  }
+
+  .scrollbar-wedding::-webkit-scrollbar-thumb:hover {
+    @apply bg-maroon-700;
+  }
+
+  /* Text gradients - Updated maroon */
+  .text-gradient-maroon {
+    background: linear-gradient(
+      135deg,
+      theme("colors.maroon.700"),
+      theme("colors.maroon.800")
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(
+      135deg,
+      theme("colors.khaki.400"),
+      theme("colors.khaki.600")
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Pulse slow animation utility */
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Custom Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 3D Flip Animation Keyframes */
+@keyframes flipToBack {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes flipToFront {
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Pulse Slow Animation */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply text-black bg-white;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card-wedding {
+    @apply border-2 border-gray-800;
+  }
+
+  .btn-wedding {
+    @apply border-2 border-gray-800;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    transition: none !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
