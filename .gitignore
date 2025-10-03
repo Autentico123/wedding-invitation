@@ -20,6 +20,9 @@ dist-ssr
 # RSVP Data
 server/data/rsvp.json
 
+# Vercel
+.vercel
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
