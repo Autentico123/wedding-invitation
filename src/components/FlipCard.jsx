@@ -202,7 +202,7 @@ const FlipCard = ({ images }) => {
    */
   const handleMaximize = useCallback(
     (event) => {
-      event.stopPropagagation();
+      event.stopPropagation();
       setMaximizedImageIndex(currentImageIndex);
       setIsMaximized(true);
       setZoomLevel(1);
@@ -641,7 +641,11 @@ const FlipCard = ({ images }) => {
                     )}
 
                     {/* Enhanced Maximize Button */}
-                    <div className="absolute bottom-3 right-3 z-20">
+                    <div 
+                      className="absolute bottom-3 right-3 z-20"
+                      onClick={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
+                    >
                       <motion.button
                         onClick={handleMaximize}
                         className="bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md rounded-full p-2.5 shadow-xl hover:shadow-2xl transition-all duration-300 border border-maroon-100 group/btn relative"
@@ -653,7 +657,10 @@ const FlipCard = ({ images }) => {
                         title="View full size image"
                         aria-label="Maximize image to full screen view"
                         onMouseEnter={() => setShowMaximizeGuide(true)}
-                        onTouchStart={() => setShowMaximizeGuide(true)}
+                        onTouchStart={(e) => {
+                          e.stopPropagation();
+                          setShowMaximizeGuide(true);
+                        }}
                       >
                         <Maximize2 className="w-4 h-4 text-maroon-600 group-hover/btn:text-maroon-700 transition-colors" />
                       </motion.button>
