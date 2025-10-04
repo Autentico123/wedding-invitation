@@ -250,8 +250,8 @@ const WeddingInvitation = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              Welcome to Our
-              <span className="block text-khaki-300 mt-1 md:mt-2">Story</span>
+              You're Invited to Our
+              <span className="block text-khaki-300 mt-1 md:mt-2">Wedding Celebration</span>
             </motion.h1>
 
             {/* Simple Elegant Divider - Mobile optimized */}
@@ -273,8 +273,7 @@ const WeddingInvitation = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.6 }}
             >
-              Tap the photo above to discover {FLIP_IMAGES.length} beautiful
-              moments from our journey together
+              Tap the photo above to view {FLIP_IMAGES.length} important details about our special day
             </motion.p>
           </motion.div>
 

@@ -330,8 +330,14 @@ const SaveTheDate = () => {
                   <div className="flex items-start space-x-3">
                     <MapPin className="w-5 h-5 text-khaki-600 mt-0.5 sm:mt-1 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
+                      {/* Mobile: Abbreviated venue name, Desktop: Full name */}
                       <div className="font-semibold text-lg sm:text-xl text-maroon-800 mb-1 leading-tight">
-                        {weddingData.reception.venue}
+                        <span className="hidden sm:inline">
+                          {weddingData.reception.venue}
+                        </span>
+                        <span className="sm:hidden">
+                          St. Anthony Parish Church
+                        </span>
                       </div>
                       <div className="text-sm sm:text-base text-maroon-600 leading-relaxed break-words">
                         {weddingData.reception.address}
