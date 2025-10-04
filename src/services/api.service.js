@@ -23,6 +23,16 @@ class ApiService {
         body: JSON.stringify(rsvpData),
       });
 
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        console.error("Expected JSON but got:", text.substring(0, 200));
+        throw new Error(
+          "Server returned an invalid response. Please check your deployment configuration."
+        );
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
@@ -43,6 +53,17 @@ class ApiService {
   async getStatistics() {
     try {
       const response = await fetch(`${API_BASE_URL}/rsvp/statistics`);
+
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        console.error("Expected JSON but got:", text.substring(0, 200));
+        throw new Error(
+          "Server returned an invalid response. Please check your deployment configuration."
+        );
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
