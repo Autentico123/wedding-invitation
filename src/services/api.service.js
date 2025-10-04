@@ -9,6 +9,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
 class ApiService {
   /**
    * Submit RSVP to backend
+   *
    * @param {Object} rsvpData - RSVP form data
    * @returns {Promise<Object>} Response data
    */

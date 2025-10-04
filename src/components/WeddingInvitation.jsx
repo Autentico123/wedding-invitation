@@ -251,9 +251,7 @@ const WeddingInvitation = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               Welcome to Our
-              <span className="block text-khaki-300 mt-1 md:mt-2">
-                Love Story
-              </span>
+              <span className="block text-khaki-300 mt-1 md:mt-2">Story</span>
             </motion.h1>
 
             {/* Simple Elegant Divider - Mobile optimized */}
