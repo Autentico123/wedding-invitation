@@ -167,7 +167,7 @@ const Navigation = () => {
           />
         </motion.div>
 
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+        <div className="container-custom overflow-x-hidden">
           <div className="flex items-center justify-between h-16 md:h-18 lg:h-20">
             {/* Enhanced Logo */}
             <motion.div
