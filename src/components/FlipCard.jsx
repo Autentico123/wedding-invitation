@@ -869,10 +869,10 @@ const FlipCard = ({ images }) => {
                 <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
               </motion.button>
 
-              {/* Enhanced Back Button - Mobile */}
+              {/* Enhanced Back Button - Mobile (Below Navbar) */}
               <motion.button
                 onClick={handleCloseMaximize}
-                className="flex md:hidden absolute top-4 left-4 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-4 py-2.5 rounded-full transition-all duration-200 border border-white/10 shadow-lg"
+                className="flex md:hidden absolute top-20 left-4 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-4 py-2.5 rounded-full transition-all duration-200 border border-white/10 shadow-lg"
                 initial={{ opacity: 0, scale: 0.8, x: -20 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -1048,9 +1048,9 @@ const FlipCard = ({ images }) => {
                 </span>
               </motion.div>
 
-              {/* Enhanced Image Counter - Mobile (Top Center) */}
+              {/* Enhanced Image Counter - Mobile (Below Navbar) */}
               <motion.div
-                className="flex md:hidden absolute top-4 right-4 z-10 bg-white/10 backdrop-blur-md text-white px-3 py-2 rounded-full border border-white/10 shadow-lg"
+                className="flex md:hidden absolute top-20 right-4 z-10 bg-white/10 backdrop-blur-md text-white px-3 py-2 rounded-full border border-white/10 shadow-lg"
                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -1089,9 +1089,9 @@ const FlipCard = ({ images }) => {
                     allImages.length
                   } - Full size view`}
                   className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                  style={{ 
+                  style={{
                     maxWidth: "95vw",
-                    maxHeight: window.innerWidth < 768 ? "70vh" : "85vh"
+                    maxHeight: window.innerWidth < 768 ? "70vh" : "85vh",
                   }}
                   onError={(e) => handleImageError(e, maximizedImageIndex)}
                   initial={{ opacity: 0 }}
