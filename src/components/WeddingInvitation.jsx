@@ -251,7 +251,9 @@ const WeddingInvitation = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               You're Invited to Our
-              <span className="block text-khaki-300 mt-1 md:mt-2">Wedding Celebration</span>
+              <span className="block text-khaki-300 mt-1 md:mt-2">
+                Wedding Celebration
+              </span>
             </motion.h1>
 
             {/* Simple Elegant Divider - Mobile optimized */}
@@ -273,7 +275,8 @@ const WeddingInvitation = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.6 }}
             >
-              Tap the photo above to view {FLIP_IMAGES.length} important details about our special day
+              Tap the photo above to view {FLIP_IMAGES.length} important details
+              about our special day
             </motion.p>
           </motion.div>
 
@@ -570,19 +573,6 @@ const WeddingInvitation = () => {
                   <Mail className="w-4 h-4 text-khaki-400 group-hover:text-khaki-300 transition-colors duration-300" />
                   <span className="font-medium text-sm group-hover:font-semibold transition-all duration-300">
                     {weddingData.rsvp.contact}
-                  </span>
-                </motion.button>
-
-                {/* Phone */}
-                <motion.button
-                  onClick={() => handleContact("phone", "+1-555-0123")}
-                  className="flex items-center space-x-3 text-maroon-200 hover:text-khaki-300 transition-all duration-300 group w-full"
-                  whileHover={{ x: 6, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Phone className="w-4 h-4 text-khaki-400 group-hover:text-khaki-300 transition-colors duration-300" />
-                  <span className="font-medium text-sm group-hover:font-semibold transition-all duration-300">
-                    +1 (555) 123-4567
                   </span>
                 </motion.button>
 
