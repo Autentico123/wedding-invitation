@@ -59,9 +59,13 @@ export default async function handler(req, res) {
       });
     }
     
-    const { name, email, attendance, guests, message, phone } = body;
+    // Extract fields - frontend sends "attending" not "attendance"
+    const { name, email, attending, guests, message, phone } = body;
     
-    console.log('Extracted fields:', { name, email, attendance });
+    // Convert attending to attendance for consistency
+    const attendance = attending;
+    
+    console.log('Extracted fields:', { name, email, attending, attendance });
 
     // Validation with better error messages
     if (!name || !email || attendance === undefined) {
@@ -71,6 +75,7 @@ export default async function handler(req, res) {
         received: {
           name: name || 'missing',
           email: email || 'missing',
+          attending: attending !== undefined ? attending : 'missing',
           attendance: attendance !== undefined ? attendance : 'missing'
         },
         debug: {
