@@ -854,10 +854,10 @@ const FlipCard = ({ images }) => {
               className="relative w-full h-full flex items-center justify-center p-4"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Enhanced Close Button */}
+              {/* Enhanced Close Button - Desktop */}
               <motion.button
                 onClick={handleCloseMaximize}
-                className="absolute top-6 right-6 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-3 rounded-full transition-all duration-200 border border-white/10 group"
+                className="hidden md:flex absolute top-6 right-6 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-3 rounded-full transition-all duration-200 border border-white/10 group"
                 initial={{ opacity: 0, scale: 0.8, rotate: -90 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -869,12 +869,30 @@ const FlipCard = ({ images }) => {
                 <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
               </motion.button>
 
+              {/* Enhanced Back Button - Mobile */}
+              <motion.button
+                onClick={handleCloseMaximize}
+                className="flex md:hidden absolute top-4 left-4 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-4 py-2.5 rounded-full transition-all duration-200 border border-white/10 shadow-lg"
+                initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                whileTap={{ scale: 0.95 }}
+                title="Go Back"
+                aria-label="Go back to gallery view"
+              >
+                <div className="flex items-center space-x-2">
+                  <ChevronLeft className="w-5 h-5" />
+                  <span className="text-sm font-semibold">Back</span>
+                </div>
+              </motion.button>
+
               {/* Enhanced Navigation Controls */}
               {allImages.length > 1 && (
                 <>
+                  {/* Previous Button - Desktop */}
                   <motion.button
                     onClick={handlePreviousImage}
-                    className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-4 rounded-full transition-all duration-200 border border-white/10"
+                    className="hidden md:flex absolute left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-4 rounded-full transition-all duration-200 border border-white/10"
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
@@ -886,9 +904,10 @@ const FlipCard = ({ images }) => {
                     <ChevronLeft className="w-7 h-7" />
                   </motion.button>
 
+                  {/* Next Button - Desktop */}
                   <motion.button
                     onClick={handleNextImage}
-                    className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-4 rounded-full transition-all duration-200 border border-white/10"
+                    className="hidden md:flex absolute right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-4 rounded-full transition-all duration-200 border border-white/10"
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
@@ -899,12 +918,40 @@ const FlipCard = ({ images }) => {
                   >
                     <ChevronRight className="w-7 h-7" />
                   </motion.button>
+
+                  {/* Mobile Navigation - Bottom */}
+                  <motion.div
+                    className="flex md:hidden absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10 space-x-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.4 }}
+                  >
+                    <motion.button
+                      onClick={handlePreviousImage}
+                      className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-3 rounded-full transition-all duration-200 border border-white/10 shadow-lg"
+                      whileTap={{ scale: 0.95 }}
+                      title="Previous image"
+                      aria-label="View previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </motion.button>
+
+                    <motion.button
+                      onClick={handleNextImage}
+                      className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-3 rounded-full transition-all duration-200 border border-white/10 shadow-lg"
+                      whileTap={{ scale: 0.95 }}
+                      title="Next image"
+                      aria-label="View next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </motion.button>
+                  </motion.div>
                 </>
               )}
 
-              {/* Enhanced Control Panel */}
+              {/* Enhanced Control Panel - Desktop & Tablet */}
               <motion.div
-                className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 flex items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-4 py-3 border border-white/10"
+                className="hidden sm:flex absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-4 py-3 border border-white/10 shadow-xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
@@ -988,24 +1035,37 @@ const FlipCard = ({ images }) => {
                 </motion.button>
               </motion.div>
 
-              {/* Enhanced Image Counter */}
+              {/* Enhanced Image Counter - Desktop */}
               <motion.div
-                className="absolute top-6 left-6 z-10 bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/10"
+                className="hidden md:flex absolute top-6 left-6 z-10 bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/10 shadow-lg items-center space-x-2"
                 initial={{ opacity: 0, scale: 0.8, x: -20 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
               >
-                <div className="flex items-center space-x-2">
-                  <Sparkles className="w-4 h-4 text-khaki-300" />
-                  <span className="text-sm font-semibold">
-                    {maximizedImageIndex + 1} / {allImages.length}
+                <Sparkles className="w-4 h-4 text-khaki-300" />
+                <span className="text-sm font-semibold">
+                  {maximizedImageIndex + 1} / {allImages.length}
+                </span>
+              </motion.div>
+
+              {/* Enhanced Image Counter - Mobile (Top Center) */}
+              <motion.div
+                className="flex md:hidden absolute top-4 right-4 z-10 bg-white/10 backdrop-blur-md text-white px-3 py-2 rounded-full border border-white/10 shadow-lg"
+                initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+              >
+                <div className="flex items-center space-x-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-khaki-300" />
+                  <span className="text-xs font-semibold">
+                    {maximizedImageIndex + 1}/{allImages.length}
                   </span>
                 </div>
               </motion.div>
 
               {/* Maximized Image Container */}
               <motion.div
-                className="max-w-full max-h-full flex items-center justify-center overflow-hidden rounded-lg"
+                className="max-w-full max-h-full flex items-center justify-center overflow-hidden rounded-lg px-2 sm:px-4"
                 style={{
                   transform: `scale(${zoomLevel})`,
                   cursor: zoomLevel > 1 ? "grab" : "default",
@@ -1029,7 +1089,10 @@ const FlipCard = ({ images }) => {
                     allImages.length
                   } - Full size view`}
                   className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                  style={{ maxWidth: "90vw", maxHeight: "85vh" }}
+                  style={{ 
+                    maxWidth: "95vw",
+                    maxHeight: window.innerWidth < 768 ? "70vh" : "85vh"
+                  }}
                   onError={(e) => handleImageError(e, maximizedImageIndex)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -1037,9 +1100,78 @@ const FlipCard = ({ images }) => {
                 />
               </motion.div>
 
-              {/* Enhanced Keyboard Instructions */}
+              {/* Mobile Control Panel - Simplified */}
               <motion.div
-                className="absolute bottom-6 right-6 z-10 bg-white/5 backdrop-blur-md text-white/60 px-4 py-2 rounded-lg text-xs border border-white/10"
+                className="flex sm:hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-2 border border-white/10 shadow-xl"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+              >
+                {/* Zoom Out */}
+                <motion.button
+                  onClick={handleZoomOut}
+                  disabled={zoomLevel <= 0.5}
+                  className="text-white p-2 rounded-full hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200"
+                  whileTap={{ scale: 0.95 }}
+                  title="Zoom out"
+                >
+                  <ZoomOut className="w-4 h-4" />
+                </motion.button>
+
+                {/* Zoom Level Display */}
+                <motion.div
+                  className="px-2 py-1 bg-white/5 rounded-full min-w-[50px] text-center"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 0.3 }}
+                  key={zoomLevel}
+                >
+                  <span className="text-white text-xs font-semibold">
+                    {Math.round(zoomLevel * 100)}%
+                  </span>
+                </motion.div>
+
+                {/* Zoom In */}
+                <motion.button
+                  onClick={handleZoomIn}
+                  disabled={zoomLevel >= 3}
+                  className="text-white p-2 rounded-full hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200"
+                  whileTap={{ scale: 0.95 }}
+                  title="Zoom in"
+                >
+                  <ZoomIn className="w-4 h-4" />
+                </motion.button>
+
+                {/* Divider */}
+                <div className="w-px h-5 bg-white/20" />
+
+                {/* Download Button */}
+                <motion.button
+                  onClick={handleDownload}
+                  className="text-white p-2 rounded-full hover:bg-white/10 transition-all duration-200"
+                  whileTap={{ scale: 0.95 }}
+                  title="Download"
+                >
+                  <Download className="w-4 h-4" />
+                </motion.button>
+
+                {/* Like Button */}
+                <motion.button
+                  onClick={handleLike}
+                  className={`p-2 rounded-full transition-all duration-200 ${
+                    liked
+                      ? "bg-red-500/20 text-red-400"
+                      : "hover:bg-white/10 text-white"
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                  title="Like"
+                >
+                  <Heart className={`w-4 h-4 ${liked ? "fill-current" : ""}`} />
+                </motion.button>
+              </motion.div>
+
+              {/* Enhanced Keyboard Instructions - Desktop Only */}
+              <motion.div
+                className="hidden lg:flex absolute bottom-6 right-6 z-10 bg-white/5 backdrop-blur-md text-white/60 px-4 py-2 rounded-lg text-xs border border-white/10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.4 }}
