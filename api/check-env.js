@@ -1,10 +1,18 @@
 // Environment check endpoint - DO NOT USE IN PRODUCTION
-module.exports = async (req, res) => {
+module.exports = function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  let nodemailerStatus;
+  try {
+    require('nodemailer');
+    nodemailerStatus = '✓ nodemailer can be loaded';
+  } catch (e) {
+    nodemailerStatus = '✗ nodemailer error: ' + e.message;
   }
 
   return res.status(200).json({
@@ -16,13 +24,6 @@ module.exports = async (req, res) => {
       COUPLE_EMAIL: process.env.COUPLE_EMAIL ? '✓ Set' : '✗ Not set',
       VITE_API_URL: process.env.VITE_API_URL ? '✓ Set' : '✗ Not set'
     },
-    canRequireNodemailer: (() => {
-      try {
-        require('nodemailer');
-        return '✓ nodemailer can be loaded';
-      } catch (e) {
-        return `✗ nodemailer error: ${e.message}`;
-      }
-    })()
+    canRequireNodemailer: nodemailerStatus
   });
 };
