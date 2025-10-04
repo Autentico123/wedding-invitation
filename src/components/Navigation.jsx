@@ -354,7 +354,7 @@ const Navigation = () => {
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl px-2">
+                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl">
                   {menuItems.map((item, index) => {
                     const isActive = activeSection === item.href.substring(1);
                     return (
