@@ -1,11 +1,5 @@
 // RSVP submission endpoint for Vercel serverless function
-module.exports = async function handler(req, res) {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Content-Type', 'application/json');
-
+export default async function handler(req, res) {
   // Handle OPTIONS request for CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -28,8 +22,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Import nodemailer after env check
-    const nodemailer = require("nodemailer");
+    // Dynamic import for ES modules
+    const nodemailerModule = await import("nodemailer");
+    const nodemailer = nodemailerModule.default;
     
     // Check if body exists
     if (!req.body) {

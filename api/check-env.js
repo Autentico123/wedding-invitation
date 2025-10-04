@@ -1,21 +1,19 @@
 // Environment check endpoint - DO NOT USE IN PRODUCTION
-module.exports = function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
+export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
   let nodemailerStatus;
   try {
-    require('nodemailer');
+    // Dynamic import for ES modules
+    await import('nodemailer');
     nodemailerStatus = '✓ nodemailer can be loaded';
   } catch (e) {
     nodemailerStatus = '✗ nodemailer error: ' + e.message;
   }
 
-  return res.status(200).json({
+  res.status(200).json({
     success: true,
     environment: {
       NODE_ENV: process.env.NODE_ENV || 'not set',
@@ -26,4 +24,4 @@ module.exports = function(req, res) {
     },
     canRequireNodemailer: nodemailerStatus
   });
-};
+}
