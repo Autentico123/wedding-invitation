@@ -1,34 +1,6 @@
 {
-  "version": 2,
   "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
-  "installCommand": "npm install --legacy-peer-deps --include=optional",
-  "outputDirectory": "dist",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
-    }
-  ],
-  "env": {
-    "NODE_VERSION": "18.x",
-    "NPM_FLAGS": "--legacy-peer-deps --include=optional"
-  }
+  "outputDirectory": "dist"
 }
