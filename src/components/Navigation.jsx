@@ -147,7 +147,7 @@ const Navigation = () => {
   return (
     <>
       {/* Navigation Bar */}
-      <motion.nav className={navbarClasses}>
+      <motion.nav className={navbarClasses + " overflow-x-hidden"}>
         {/* Enhanced Scroll Progress Bar */}
         <motion.div
           className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-khaki-400 via-maroon-500 to-khaki-400 shadow-lg"
@@ -167,7 +167,7 @@ const Navigation = () => {
           />
         </motion.div>
 
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="flex items-center justify-between h-16 md:h-18 lg:h-20">
             {/* Enhanced Logo */}
             <motion.div
@@ -348,13 +348,13 @@ const Navigation = () => {
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                className="md:hidden mobile-menu-container w-full overflow-hidden"
+                className="md:hidden mobile-menu-container w-full overflow-x-hidden"
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl">
+                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl w-full">
                   {menuItems.map((item, index) => {
                     const isActive = activeSection === item.href.substring(1);
                     return (
