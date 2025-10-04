@@ -15,7 +15,7 @@ class ApiService {
    */
   async submitRSVP(rsvpData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/rsvp/submit`, {
+      const response = await fetch(`${API_BASE_URL}/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
