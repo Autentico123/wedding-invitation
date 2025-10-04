@@ -112,14 +112,14 @@ const WeddingInvitation = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white scrollbar-wedding">
+    <div className="min-h-screen bg-white scrollbar-wedding overflow-x-hidden w-full max-w-full">
       {/* Fixed Navigation */}
       <Navigation />
 
       {/* Hero Section - Fixed FlipCard Positioning */}
       <motion.section
         id="home"
-        className="relative min-h-screen flex items-center justify-center pt-24 pb-8 lg:pt-28"
+        className="relative min-h-screen flex items-center justify-center pt-24 pb-8 lg:pt-28 overflow-x-hidden w-full max-w-full"
         style={{
           backgroundImage: "url(/background-image.jpeg)",
           backgroundSize: "cover",
@@ -373,12 +373,12 @@ const WeddingInvitation = () => {
       </div>
 
       {/* RSVP Section */}
-      <div id="rsvp">
+      <div id="rsvp" className="overflow-x-hidden w-full max-w-full">
         <RSVPForm />
       </div>
 
       {/* Enhanced Footer Section */}
-      <footer className="relative bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-900 text-white section-padding no-print overflow-hidden">
+      <footer className="relative bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-900 text-white section-padding no-print overflow-x-hidden w-full max-w-full">
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Floating Hearts */}

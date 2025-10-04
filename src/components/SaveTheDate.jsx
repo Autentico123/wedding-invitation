@@ -67,7 +67,7 @@ const SaveTheDate = () => {
 
   return (
     <motion.section
-      className="relative min-h-screen bg-gradient-to-br from-maroon-50 via-khaki-50/30 to-rose-50 py-16 md:py-20 lg:py-24 overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-maroon-50 via-khaki-50/30 to-rose-50 py-16 md:py-20 lg:py-24 overflow-x-hidden w-full max-w-full"
       variants={ANIMATION_VARIANTS.stagger}
       initial="hidden"
       whileInView="visible"

@@ -10,11 +10,17 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 4rem;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
     @apply antialiased text-gray-900 bg-white leading-relaxed;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
   }
 
   .font-serif {
@@ -100,10 +106,15 @@
 
   .section-padding {
     @apply py-16 md:py-20 lg:py-24;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .container-custom {
     @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   /* Flip card image optimization */
@@ -298,5 +309,70 @@
 
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Mobile overflow fixes */
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.App {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Prevent horizontal scroll on all sections */
+section,
+main,
+div[class*="section"],
+div[class*="container"] {
+  max-width: 100%;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  * {
+    max-width: 100vw;
+  }
+  
+  body,
+  html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    position: relative;
+  }
+  
+  .App {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+  
+  /* Prevent touch-based horizontal drag */
+  body {
+    overscroll-behavior-x: none;
+    touch-action: pan-y pinch-zoom;
+  }
+  
+  /* Fix for sections with padding */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box;
+  }
+  
+  /* Ensure containers don't overflow */
+  .container,
+  .container-custom {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
   }
 }

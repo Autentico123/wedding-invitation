@@ -278,7 +278,7 @@ const RSVPForm = () => {
 
   return (
     <motion.section
-      className="relative min-h-screen bg-gradient-to-br from-rose-50 via-maroon-50/30 to-khaki-50 py-16 md:py-20 lg:py-24 overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-rose-50 via-maroon-50/30 to-khaki-50 py-16 md:py-20 lg:py-24 overflow-x-hidden w-full max-w-full"
       variants={enhancedVariants.container}
       initial="hidden"
       whileInView="visible"

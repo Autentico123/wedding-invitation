@@ -4,7 +4,7 @@ import WeddingInvitation from "./components/WeddingInvitation";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden w-full max-w-full relative">
       <WeddingInvitation />
       <Toaster
         position="top-right"
