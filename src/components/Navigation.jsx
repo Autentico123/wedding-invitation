@@ -135,7 +135,7 @@ const Navigation = () => {
 
   // Enhanced navbar classes with better glassmorphism
   const navbarClasses = `
-    fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out
+    fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out w-full
     ${
       scrollY > 50
         ? "bg-maroon-900/98 backdrop-blur-2xl shadow-2xl border-b border-maroon-700/30"
@@ -167,7 +167,7 @@ const Navigation = () => {
           />
         </motion.div>
 
-        <div className="container-custom">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-18 lg:h-20">
             {/* Enhanced Logo */}
             <motion.div
@@ -354,7 +354,7 @@ const Navigation = () => {
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl mx-4 shadow-2xl">
+                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl">
                   {menuItems.map((item, index) => {
                     const isActive = activeSection === item.href.substring(1);
                     return (
