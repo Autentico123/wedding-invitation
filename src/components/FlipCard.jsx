@@ -34,12 +34,24 @@ const FlipCard = ({ images }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [showMaximizeGuide, setShowMaximizeGuide] = useState(true);
 
   // Touch gesture tracking
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   const allImages = images || [];
+
+  /**
+   * Hide maximize guide after initial display (mobile users)
+   */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMaximizeGuide(false);
+    }, 5000); // Hide after 5 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   /**
    * Enhanced keyboard navigation with accessibility
@@ -190,10 +202,11 @@ const FlipCard = ({ images }) => {
    */
   const handleMaximize = useCallback(
     (event) => {
-      event.stopPropagation();
+      event.stopPropagagation();
       setMaximizedImageIndex(currentImageIndex);
       setIsMaximized(true);
       setZoomLevel(1);
+      setShowMaximizeGuide(false); // Hide guide when user maximizes
     },
     [currentImageIndex]
   );
@@ -628,19 +641,57 @@ const FlipCard = ({ images }) => {
                     )}
 
                     {/* Enhanced Maximize Button */}
-                    <motion.button
-                      onClick={handleMaximize}
-                      className="absolute bottom-3 right-3 bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md rounded-full p-2.5 shadow-xl hover:shadow-2xl transition-all duration-300 z-20 border border-maroon-100 group/btn"
-                      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ delay: 0.9, duration: 0.4 }}
-                      whileHover={{ scale: 1.15, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                      title="View full size image"
-                      aria-label="Maximize image to full screen view"
-                    >
-                      <Maximize2 className="w-4 h-4 text-maroon-600 group-hover/btn:text-maroon-700 transition-colors" />
-                    </motion.button>
+                    <div className="absolute bottom-3 right-3 z-20">
+                      <motion.button
+                        onClick={handleMaximize}
+                        className="bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md rounded-full p-2.5 shadow-xl hover:shadow-2xl transition-all duration-300 border border-maroon-100 group/btn relative"
+                        initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ delay: 0.9, duration: 0.4 }}
+                        whileHover={{ scale: 1.15, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        title="View full size image"
+                        aria-label="Maximize image to full screen view"
+                        onMouseEnter={() => setShowMaximizeGuide(true)}
+                        onTouchStart={() => setShowMaximizeGuide(true)}
+                      >
+                        <Maximize2 className="w-4 h-4 text-maroon-600 group-hover/btn:text-maroon-700 transition-colors" />
+                      </motion.button>
+
+                      {/* Tap to Maximize Guide - Mobile Focused */}
+                      <AnimatePresence>
+                        {showMaximizeGuide && (
+                          <motion.div
+                            className="absolute bottom-full right-0 mb-2 pointer-events-none"
+                            initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <div className="bg-gradient-to-r from-maroon-600 to-maroon-700 backdrop-blur-md rounded-xl px-3 py-2 shadow-xl border border-white/20 whitespace-nowrap">
+                              <div className="flex items-center space-x-2">
+                                <motion.div
+                                  animate={{ scale: [1, 1.2, 1] }}
+                                  transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                  }}
+                                >
+                                  <Maximize2 className="w-3.5 h-3.5 text-khaki-300" />
+                                </motion.div>
+                                <span className="text-white font-serif text-xs font-medium">
+                                  <span className="md:hidden">Tap to maximize</span>
+                                  <span className="hidden md:inline">Click to maximize</span>
+                                </span>
+                              </div>
+                              {/* Tooltip Arrow */}
+                              <div className="absolute -bottom-1 right-3 w-2 h-2 bg-maroon-700 transform rotate-45"></div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </>
                 )}
             </div>
