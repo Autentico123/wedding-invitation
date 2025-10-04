@@ -1,5 +1,9 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
+  "framework": null,
+  "installCommand": "npm install --legacy-peer-deps --include=optional",
+  "outputDirectory": "dist",
   "builds": [
     {
       "src": "package.json",
@@ -20,7 +24,7 @@
     }
   ],
   "env": {
-    "NODE_VERSION": "18.x"
-  },
-  "installCommand": "npm install --include=optional"
+    "NODE_VERSION": "18.x",
+    "NPM_FLAGS": "--legacy-peer-deps --include=optional"
+  }
 }

@@ -16,7 +16,6 @@
     "start:dev": "cross-env NODE_ENV=development node server/index.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "vercel-build": "npm install && vite build",
     "postinstall": "echo 'Dependencies installed successfully'"
   },
   "dependencies": {
