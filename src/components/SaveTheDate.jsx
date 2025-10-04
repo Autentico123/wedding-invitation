@@ -133,42 +133,42 @@ const SaveTheDate = () => {
       <div className="container-custom relative z-10">
         {/* Enhanced Section Header */}
         <motion.div
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20 px-4"
           variants={ANIMATION_VARIANTS.stagger}
         >
           {/* Main Title */}
           <motion.div
-            className="relative mb-6"
+            className="relative mb-4 sm:mb-6"
             variants={ANIMATION_VARIANTS.fadeInUp}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-maroon-800 mb-4 relative">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-maroon-800 mb-3 sm:mb-4 relative leading-tight">
               Save The Date
               {/* Enhanced text shadow */}
-              <span className="absolute inset-0 text-maroon-800/20 blur-sm text-4xl md:text-5xl lg:text-6xl font-serif">
+              <span className="absolute inset-0 text-maroon-800/20 blur-sm text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif">
                 Save The Date
               </span>
             </h2>
 
             {/* Decorative elements around title */}
             <motion.div
-              className="absolute -top-2 -left-2 text-khaki-400/60"
+              className="absolute -top-1 sm:-top-2 left-0 sm:-left-2 text-khaki-400/60"
               variants={ANIMATION_VARIANTS.decorativeElement}
             >
-              <Heart className="w-6 h-6 fill-current" />
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
             </motion.div>
 
             <motion.div
-              className="absolute -top-1 -right-3 text-rose-400/60"
+              className="absolute -top-0.5 sm:-top-1 right-0 sm:-right-3 text-rose-400/60"
               variants={ANIMATION_VARIANTS.decorativeElement}
               transition={{ delay: 0.2 }}
             >
-              <Star className="w-4 h-4 fill-current" />
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
             </motion.div>
           </motion.div>
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg md:text-xl text-maroon-600/80 mb-6 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-base sm:text-lg md:text-xl text-maroon-600/80 mb-6 max-w-3xl mx-auto leading-relaxed font-light px-2"
             variants={ANIMATION_VARIANTS.fadeInUp}
           >
             Join us as we celebrate the beginning of our forever journey
@@ -212,7 +212,7 @@ const SaveTheDate = () => {
 
         {/* Enhanced Reception Card - Centered */}
         <motion.div
-          className="max-w-2xl mx-auto"
+          className="max-w-2xl mx-auto px-4 sm:px-0"
           variants={ANIMATION_VARIANTS.fadeInUp}
           whileHover={{
             y: -8,
@@ -220,7 +220,7 @@ const SaveTheDate = () => {
           }}
         >
           {/* Card Background with Glass Effect */}
-          <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8 md:p-12 overflow-hidden">
+          <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 p-6 sm:p-8 md:p-12 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-khaki-50/50 to-maroon-50/30 opacity-50" />
 
@@ -258,9 +258,9 @@ const SaveTheDate = () => {
 
             <div className="relative z-10">
               {/* Card Header */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-6 sm:mb-8">
                 <motion.div
-                  className="relative bg-gradient-to-br from-khaki-100 to-maroon-200 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg"
+                  className="relative bg-gradient-to-br from-khaki-100 to-maroon-200 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"
                   whileHover={{
                     scale: 1.1,
                     rotate: 360,
@@ -281,15 +281,15 @@ const SaveTheDate = () => {
                     },
                   }}
                 >
-                  <Heart className="w-12 h-12 md:w-14 md:h-14 text-maroon-700 fill-current" />
+                  <Heart className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-maroon-700 fill-current" />
                 </motion.div>
 
-                <h3 className="text-3xl md:text-4xl font-serif text-maroon-800 mb-2">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif text-maroon-800 mb-2 px-2">
                   Wedding Reception
                 </h3>
 
                 <motion.div
-                  className="w-16 h-0.5 bg-gradient-to-r from-khaki-400 via-maroon-400 to-khaki-400 mx-auto"
+                  className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-khaki-400 via-maroon-400 to-khaki-400 mx-auto"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
@@ -297,20 +297,20 @@ const SaveTheDate = () => {
               </div>
 
               {/* Event Details */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Date and Time */}
                 <motion.div
-                  className="text-center"
+                  className="text-center px-2"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  <div className="text-2xl md:text-3xl font-semibold text-maroon-700 mb-2">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-maroon-700 mb-2 leading-tight">
                     {dateInfo.fullDate}
                   </div>
-                  <div className="flex items-center justify-center text-maroon-600 mb-4">
-                    <Clock className="w-5 h-5 mr-2" />
-                    <span className="font-medium text-lg">
+                  <div className="flex items-center justify-center text-maroon-600 mb-3 sm:mb-4">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+                    <span className="font-medium text-base sm:text-lg">
                       {weddingData.reception.time}
                     </span>
                   </div>
@@ -318,7 +318,7 @@ const SaveTheDate = () => {
 
                 {/* Venue Information */}
                 <motion.div
-                  className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-khaki-100/50"
+                  className="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-khaki-100/50"
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
@@ -328,12 +328,12 @@ const SaveTheDate = () => {
                   }}
                 >
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-khaki-600 mt-1 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-semibold text-xl text-maroon-800 mb-1">
+                    <MapPin className="w-5 h-5 text-khaki-600 mt-0.5 sm:mt-1 flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-lg sm:text-xl text-maroon-800 mb-1 leading-tight">
                         {weddingData.reception.venue}
                       </div>
-                      <div className="text-maroon-600 leading-relaxed">
+                      <div className="text-sm sm:text-base text-maroon-600 leading-relaxed break-words">
                         {weddingData.reception.address}
                       </div>
                     </div>
@@ -344,11 +344,11 @@ const SaveTheDate = () => {
                     onClick={() =>
                       handleMapNavigation(weddingData.reception.address)
                     }
-                    className="mt-6 w-full bg-gradient-to-r from-khaki-600 to-maroon-600 hover:from-khaki-700 hover:to-maroon-700 text-white py-3 px-6 rounded-xl font-medium transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
+                    className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-khaki-600 to-maroon-600 hover:from-khaki-700 hover:to-maroon-700 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl font-medium text-sm sm:text-base transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg active:scale-95"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Navigation className="w-5 h-5" />
+                    <Navigation className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Get Directions</span>
                   </motion.button>
                 </motion.div>
