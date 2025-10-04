@@ -1,5 +1,10 @@
 {
   "buildCommand": "npx vite build",
   "outputDirectory": "dist",
-  "installCommand": "npm install --include=dev --legacy-peer-deps"
+  "installCommand": "npm install --include=dev --legacy-peer-deps",
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 10
+    }
+  }
 }

@@ -26,20 +26,57 @@ export default async function handler(req, res) {
     const nodemailerModule = await import("nodemailer");
     const nodemailer = nodemailerModule.default;
     
-    // Check if body exists
-    if (!req.body) {
+    // Parse body if it's not already parsed
+    let body = req.body;
+    
+    console.log('Request body type:', typeof body);
+    console.log('Request body:', body);
+    
+    // If body is a string, parse it
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+        console.log('Parsed body:', body);
+      } catch (e) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid JSON in request body",
+          error: e.message
+        });
+      }
+    }
+    
+    // Check if body exists and has data
+    if (!body || typeof body !== 'object') {
       return res.status(400).json({
         success: false,
-        message: "Request body is empty"
+        message: "Request body is empty or invalid",
+        debug: {
+          bodyType: typeof req.body,
+          bodyIsObject: typeof body === 'object',
+          bodyKeys: body ? Object.keys(body) : []
+        }
       });
     }
-    const { name, email, attendance, guests, message, phone } = req.body;
+    
+    const { name, email, attendance, guests, message, phone } = body;
+    
+    console.log('Extracted fields:', { name, email, attendance });
 
-    // Validation
+    // Validation with better error messages
     if (!name || !email || attendance === undefined) {
       return res.status(400).json({
         success: false,
-        message: "Missing required fields: name, email, and attendance"
+        message: "Missing required fields: name, email, and attendance",
+        received: {
+          name: name || 'missing',
+          email: email || 'missing',
+          attendance: attendance !== undefined ? attendance : 'missing'
+        },
+        debug: {
+          allKeys: Object.keys(body),
+          bodyContent: body
+        }
       });
     }
 
