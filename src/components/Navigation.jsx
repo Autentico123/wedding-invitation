@@ -348,13 +348,13 @@ const Navigation = () => {
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                className="md:hidden mobile-menu-container"
+                className="md:hidden mobile-menu-container w-full overflow-hidden"
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl">
+                <div className="py-4 border-t border-maroon-700/50 bg-maroon-900/60 backdrop-blur-xl rounded-b-2xl shadow-2xl px-2">
                   {menuItems.map((item, index) => {
                     const isActive = activeSection === item.href.substring(1);
                     return (
@@ -364,7 +364,7 @@ const Navigation = () => {
                           e.stopPropagation();
                           scrollToSection(item.href);
                         }}
-                        className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg mx-2 my-1 group transition-all duration-300 ${
+                        className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg my-1 group transition-all duration-300 ${
                           isActive
                             ? "text-white bg-white/15 shadow-lg border border-white/20"
                             : "text-white/90 hover:text-white hover:bg-white/10"
