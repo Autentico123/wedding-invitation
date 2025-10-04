@@ -26,62 +26,17 @@ export default async function handler(req, res) {
     const nodemailerModule = await import("nodemailer");
     const nodemailer = nodemailerModule.default;
     
-    // Parse body if it's not already parsed
-    let body = req.body;
-    
-    console.log('Request body type:', typeof body);
-    console.log('Request body:', body);
-    
-    // If body is a string, parse it
-    if (typeof body === 'string') {
-      try {
-        body = JSON.parse(body);
-        console.log('Parsed body:', body);
-      } catch (e) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid JSON in request body",
-          error: e.message
-        });
-      }
-    }
-    
-    // Check if body exists and has data
-    if (!body || typeof body !== 'object') {
-      return res.status(400).json({
-        success: false,
-        message: "Request body is empty or invalid",
-        debug: {
-          bodyType: typeof req.body,
-          bodyIsObject: typeof body === 'object',
-          bodyKeys: body ? Object.keys(body) : []
-        }
-      });
-    }
-    
     // Extract fields - frontend sends "attending" not "attendance"
-    const { name, email, attending, guests, message, phone } = body;
+    const { name, email, attending, guests, message, phone } = req.body;
     
     // Convert attending to attendance for consistency
     const attendance = attending;
-    
-    console.log('Extracted fields:', { name, email, attending, attendance });
 
-    // Validation with better error messages
+    // Validation
     if (!name || !email || attendance === undefined) {
       return res.status(400).json({
         success: false,
-        message: "Missing required fields: name, email, and attendance",
-        received: {
-          name: name || 'missing',
-          email: email || 'missing',
-          attending: attending !== undefined ? attending : 'missing',
-          attendance: attendance !== undefined ? attendance : 'missing'
-        },
-        debug: {
-          allKeys: Object.keys(body),
-          bodyContent: body
-        }
+        message: "Missing required fields: name, email, and attendance"
       });
     }
 
@@ -205,10 +160,7 @@ export default async function handler(req, res) {
     
     return res.status(500).json({
       success: false,
-      message: "Failed to submit RSVP. Please try again or contact us directly.",
-      error: error.message,
-      errorType: error.name,
-      stack: process.env.NODE_ENV === "development" ? error.stack : undefined
+      message: "Failed to submit RSVP. Please try again or contact us directly."
     });
   }
 }
