@@ -1,11 +1,10 @@
-const nodemailer = require("nodemailer");
-
 // RSVP submission endpoint for Vercel serverless function
 module.exports = async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Content-Type', 'application/json');
 
   // Handle OPTIONS request for CORS preflight
   if (req.method === 'OPTIONS') {
@@ -21,6 +20,24 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    // Check for required environment variables
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      return res.status(500).json({
+        success: false,
+        message: "Email configuration is missing. Please set EMAIL_USER and EMAIL_PASS environment variables."
+      });
+    }
+
+    // Import nodemailer after env check
+    const nodemailer = require("nodemailer");
+    
+    // Check if body exists
+    if (!req.body) {
+      return res.status(400).json({
+        success: false,
+        message: "Request body is empty"
+      });
+    }
     const { name, email, attendance, guests, message, phone } = req.body;
 
     // Validation
@@ -152,7 +169,9 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({
       success: false,
       message: "Failed to submit RSVP. Please try again or contact us directly.",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined
+      error: error.message,
+      errorType: error.name,
+      stack: process.env.NODE_ENV === "development" ? error.stack : undefined
     });
   }
 }
