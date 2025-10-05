@@ -63,7 +63,8 @@ const WeddingInvitation = () => {
    */
   const handleMapNavigation = () => {
     // Use the specific church name and address for accurate directions
-    const destination = "ST. ANTHONY THE ABBOT PARISH CHURCH, POBLACION NORTE, CARMEN, BOHOL";
+    const destination =
+      "ST. ANTHONY THE ABBOT PARISH CHURCH, POBLACION NORTE, CARMEN, BOHOL";
     const encodedDestination = encodeURIComponent(destination);
     const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
     window.open(mapUrl, "_blank", "noopener,noreferrer");
@@ -506,7 +507,7 @@ const WeddingInvitation = () => {
                   <Calendar className="w-5 h-5 text-khaki-400" />
                   <div>
                     <p className="text-khaki-300 font-semibold">
-                      October 15, 2024
+                      October 16, 2025
                     </p>
                     <p className="text-maroon-300 text-sm">Save the Date</p>
                   </div>
