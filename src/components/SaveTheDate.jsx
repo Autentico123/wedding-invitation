@@ -41,11 +41,13 @@ const SaveTheDate = () => {
   const dateInfo = parseDate(weddingData.date);
 
   /**
-   * Handle map navigation
+   * Handle map navigation - Opens Google Maps to the church
    */
-  const handleMapNavigation = (address) => {
-    const encodedAddress = encodeURIComponent(address);
-    const mapUrl = `https://maps.google.com/?q=${encodedAddress}`;
+  const handleMapNavigation = () => {
+    // Use the specific church name and address for accurate directions
+    const destination = "ST. ANTHONY THE ABBOT PARISH CHURCH, POBLACION NORTE, CARMEN, BOHOL";
+    const encodedDestination = encodeURIComponent(destination);
+    const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
     window.open(mapUrl, "_blank", "noopener,noreferrer");
   };
 
@@ -347,9 +349,7 @@ const SaveTheDate = () => {
 
                   {/* Get Directions Button */}
                   <motion.button
-                    onClick={() =>
-                      handleMapNavigation(weddingData.reception.address)
-                    }
+                    onClick={handleMapNavigation}
                     className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-khaki-600 to-maroon-600 hover:from-khaki-700 hover:to-maroon-700 text-white py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl font-medium text-sm sm:text-base transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg active:scale-95"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}

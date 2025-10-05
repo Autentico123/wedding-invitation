@@ -59,11 +59,13 @@ const WeddingInvitation = () => {
   };
 
   /**
-   * Handle map navigation
+   * Handle map navigation - Opens Google Maps to the church
    */
-  const handleMapNavigation = (address) => {
-    const encodedAddress = encodeURIComponent(address);
-    const mapUrl = `https://maps.google.com/?q=${encodedAddress}`;
+  const handleMapNavigation = () => {
+    // Use the specific church name and address for accurate directions
+    const destination = "ST. ANTHONY THE ABBOT PARISH CHURCH, POBLACION NORTE, CARMEN, BOHOL";
+    const encodedDestination = encodeURIComponent(destination);
+    const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
     window.open(mapUrl, "_blank", "noopener,noreferrer");
   };
 
@@ -576,11 +578,9 @@ const WeddingInvitation = () => {
                   </span>
                 </motion.button>
 
-                {/* Reception Location (if you want to keep it) */}
+                {/* Get Directions to Church */}
                 <motion.button
-                  onClick={() =>
-                    handleMapNavigation(weddingData.reception.address)
-                  }
+                  onClick={handleMapNavigation}
                   className="flex items-start space-x-3 text-maroon-200 hover:text-khaki-300 transition-all duration-300 group w-full text-left"
                   whileHover={{ x: 6, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -592,6 +592,9 @@ const WeddingInvitation = () => {
                     </div>
                     <div className="text-xs text-maroon-300 group-hover:text-maroon-200 transition-colors duration-300">
                       {weddingData.reception.address}
+                    </div>
+                    <div className="text-xs text-khaki-400 mt-1 group-hover:text-khaki-300 transition-colors duration-300">
+                      Tap for directions →
                     </div>
                   </div>
                 </motion.button>
